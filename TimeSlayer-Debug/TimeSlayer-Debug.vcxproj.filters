@@ -24,6 +24,9 @@
     <ClCompile Include="character.cpp">
       <Filter>Character Files</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Character Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png">
@@ -38,6 +41,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="character.h">
+      <Filter>Character Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemies.h">
       <Filter>Character Files</Filter>
     </ClInclude>
   </ItemGroup>

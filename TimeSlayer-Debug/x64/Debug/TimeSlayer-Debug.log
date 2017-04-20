@@ -1,0 +1,8 @@
+﻿  main.cpp
+c:\users\yocknasty\documents\visual studio 2015\projects\timeslayer-debug-beta\timeslayer-debug\main.cpp(33): warning C4305: 'argument': truncation from 'double' to 'float'
+  Enemy.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  character.cpp
+  TimeSlayer-Debug.vcxproj -> C:\Users\Yocknasty\Documents\Visual Studio 2015\Projects\TimeSlayer-Debug-Beta\x64\Debug\TimeSlayer-Debug.exe
+  TimeSlayer-Debug.vcxproj -> C:\Users\Yocknasty\Documents\Visual Studio 2015\Projects\TimeSlayer-Debug-Beta\x64\Debug\TimeSlayer-Debug.pdb (Partial PDB)

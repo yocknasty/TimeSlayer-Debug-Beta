@@ -36,7 +36,8 @@ public:
 
 	int retY();
 
-private:
+	//vars are protected to to give access to the derived classes 
+protected:
 	float moveSpeed;
 	float gravity;
 

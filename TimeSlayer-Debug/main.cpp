@@ -5,14 +5,14 @@
 */
 
 #include "character.h"
-
+#include "Enemies.h"
 using std::endl;
 using std::string;
 
 int main() {
 
 	//Generates the screen
-	sf::Vector2i screenDimensions(800, 250);
+	sf::Vector2i screenDimensions(800, 260);
 
 	//Renders the Window
 	sf::RenderWindow Window;
@@ -30,11 +30,12 @@ int main() {
 
 	//Generates the player
 	Player kLlam;
+	Enemy evilGuy(-0.1, 3, sf::Color::Blue);
 	kLlam.setCharacter(Character({20, 60}, sf::Color::Red));
 	kLlam.setPos({ 400,125 });
-
+	
 	//Ground Height, necesary for fiddling with gravity
-	const int groundHeight = 240;
+	const int groundHeight = 220;
 
 
 	//Main Game loop
@@ -82,6 +83,9 @@ int main() {
 			kLlam.moveMe({ 0 , kLlam.ggr() });
 		}
 		
+		//move enemy across screen
+		evilGuy.move(sf::Vector2f(evilGuy.getMoveSpeed(), 0));
+		evilGuy.drawTo(Window);
 
 		Window.clear();
 		Window.draw(bimage);
