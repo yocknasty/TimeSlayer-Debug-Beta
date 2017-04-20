@@ -1,5 +1,5 @@
 /* 
-	I mean it's main.
+	YuNg EnGiNeEr
 	If you don't know what this is by now
 	this is going to be a long project.
 */
