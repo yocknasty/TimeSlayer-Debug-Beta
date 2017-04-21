@@ -35,6 +35,7 @@ public:
 	void setGrav(float gr);
 
 	int retY();
+	int retX();
 
 private:
 	float moveSpeed;
@@ -61,7 +62,9 @@ public:
 	void setCharacter(Character p);
 	void setJump(bool cool);
 	bool isJump();
+	
 	int retY();
+	int retX();
 
 	Character getCharacter();
 
