@@ -97,8 +97,16 @@ int Character::retY() {
 	return character.getPosition().y;
 }
 
+int Character::retX() {
+	return character.getPosition().x;
+}
+
 int Player::retY() {
 	return player.retY();
+}
+
+int Player::retX() {
+	return player.retX();
 }
 
 bool Player::isJump() {

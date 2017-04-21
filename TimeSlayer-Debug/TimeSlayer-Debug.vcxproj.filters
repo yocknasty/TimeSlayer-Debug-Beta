@@ -16,6 +16,15 @@
     <Filter Include="Character Files">
       <UniqueIdentifier>{83c4dd54-22c1-4910-a79f-6dad092410f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Screens">
+      <UniqueIdentifier>{69305a6e-ba10-4660-a002-8a1768068d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Title Screen">
+      <UniqueIdentifier>{a04772a2-9e59-43dd-85e4-717d3acfffab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Game Wrapper">
+      <UniqueIdentifier>{ea7646c2-85df-40dc-a0aa-c8cd3b188de4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,11 +43,17 @@
     <ClInclude Include="header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="background.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="character.h">
       <Filter>Character Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menus.h">
+      <Filter>Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScreen.h">
+      <Filter>Screens\Title Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Screens\Game Wrapper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
