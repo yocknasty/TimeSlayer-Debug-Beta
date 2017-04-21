@@ -5,91 +5,27 @@
 */
 
 #include "character.h"
+#include "TitleScreen.h"
+#include "game.h"
 
 using std::endl;
 using std::string;
 
 int main() {
 
-	//Generates the screen
-	sf::Vector2i screenDimensions(800, 250);
+	std::vector<screenInstance*> Screens;
+	int screen = 0;
 
-	//Renders the Window
-	sf::RenderWindow Window;
-	Window.create(sf::VideoMode(screenDimensions.x, screenDimensions.y), "TimeSlayers");
+	sf::RenderWindow App(sf::VideoMode(640, 480, 32), "SFML Demo 3");
 
-	//Initially loads the background
-	sf::Texture bTexture;
-	if (!bTexture.loadFromFile("Background.png")) {
-		return -1;
+	App.setMouseCursorVisible(false);
+
+	title s0;
+	Screens.push_back(&s0);
+	game s1;
+	Screens.push_back(&s1);
+
+	while (screen >= 0) {
+		screen = Screens[screen]->Run(App);
 	}
-
-	//Sets the background to the loaded image
-	sf::Sprite bimage;
-	bimage.setTexture(bTexture);
-
-	//Generates the player
-	Player kLlam;
-	kLlam.setCharacter(Character({20, 60}, sf::Color::Red));
-	kLlam.setPos({ 400,125 });
-
-	//Ground Height, necesary for fiddling with gravity
-	const int groundHeight = 240;
-
-
-	//Main Game loop
-	while (Window.isOpen()) {
-		sf::Event Event;
-
-		//Controls movement, left, right, and up
-		//Currently, when you hold up you keep on going. It's pretty funny
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			kLlam.moveMe({ 0, -kLlam.gms() });
-			kLlam.setJump(true);
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			kLlam.moveMe({ kLlam.gms(),0 });
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			kLlam.moveMe({-kLlam.gms(),0 });
-		}
-
-		//Event loop
-		while (Window.pollEvent(Event)) {
-			switch (Event.type)
-			{
-			case sf::Event::Closed:
-				Window.close();
-				break;
-			
-			//Closes the window if ESC is pressed
-			case sf::Event::KeyPressed:
-				if (Event.key.code == sf::Keyboard::Escape)
-					Window.close();
-				break;
-			
-			//If Up is released, the isJumping boolean is set to false
-			case sf::Event::KeyReleased:
-				if(Event.key.code == sf::Keyboard::Up)
-					kLlam.setJump(false);
-				break;
-
-			}
-		}
-
-		//Basically gravity pulling the block down if it's not jumping and is above the ground height
-		if ((kLlam.retY() < groundHeight) && (!kLlam.isJump())) {
-			kLlam.moveMe({ 0 , kLlam.ggr() });
-		}
-		
-
-		Window.clear();
-		Window.draw(bimage);
-		kLlam.drawMe(Window);
-		Window.display();
-		
-
-	}
-
-
 }
