@@ -45,6 +45,13 @@ void Player::setPos(sf::Vector2f newPos) {
 	player.setPos(newPos);
 }
 
+sf::Vector2f Player::GetPos()
+{
+	sf::Vector2f Position;
+	Position.x = player.retX();
+	Position.y = player.retY();
+	return Position;
+}
 
 //----Constructors & Destructors----
 Player::Player() {
