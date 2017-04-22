@@ -1,6 +1,7 @@
 #include "header.h"
 #include "menus.h"
 #include "character.h"
+#include "bullit.h"
 
 
 class game : public screenInstance
@@ -53,6 +54,11 @@ int game::Run(sf::RenderWindow &App)
 	bool Running = true;
 	bool isFalling = false;
 	PlayerCharacter.setPos({ 300,340 });
+	//make all the bellets the player can shoot in a frame
+	Bullet BulletArray[50];
+	int i = 0;
+	BulletArray[i].shot = false;
+
 
 	int maxHeight = PlayerCharacter.getCharacter().maxJump();
 	while (App.isOpen()) {
@@ -82,6 +88,16 @@ int game::Run(sf::RenderWindow &App)
 			PlayerCharacter.moveMe({ -PlayerCharacter.gms(),0 });
 
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+
+			sf::Vector2f HipPosition;
+			HipPosition.x = PlayerCharacter.GetPos().x;
+			HipPosition.y = PlayerCharacter.GetPos().y + 15;
+			BulletArray[i].setPosition(HipPosition);
+			BulletArray[i].shot = true;
+
+		}
+		BulletArray[i].move(1.0, 0);
 
 
 
@@ -128,6 +144,7 @@ int game::Run(sf::RenderWindow &App)
 		App.clear();
 		App.draw(bimage);
 		PlayerCharacter.drawMe(App);
+		App.draw(BulletArray[i]);
 		App.display();
 
 	}
