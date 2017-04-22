@@ -56,8 +56,8 @@ public:
 	void setPos(sf::Vector2f newPos);
 	void drawMe(sf::RenderWindow &window);
 
-	float gms();
-	float ggr();
+	float gms();//get move speed
+	float ggr();//get gravity
 
 	void setCharacter(Character p);
 	void setJump(bool cool);
@@ -72,3 +72,21 @@ private:
 	Character player;
 	bool isJumping;
 };
+//holds the code for enemy characters
+class Enemy : public Character
+{
+public:
+	Enemy();
+	~Enemy();
+
+	void setEnemy(Character e);
+	void moveEnemy(sf::Vector2f dist);
+	void setPos(sf::Vector2f newPos);
+	void drawEnemy(sf::RenderWindow &window);
+private:
+	int ememy_Index; //tells which enemy is in the array
+	bool is_dead;
+	Character _evilguy;
+
+};
+

@@ -16,7 +16,7 @@ int main() {
 	std::vector<screenInstance*> Screens;
 	int screen = 0;
 
-	sf::RenderWindow App(sf::VideoMode(640, 480, 32), "SFML Demo 3");
+	sf::RenderWindow App(sf::VideoMode(640, 480, 32), "Time Slayer");
 
 	App.setMouseCursorVisible(false);
 

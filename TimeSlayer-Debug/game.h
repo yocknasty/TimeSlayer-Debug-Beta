@@ -1,13 +1,14 @@
 #include "header.h"
 #include "menus.h"
 #include "character.h"
-
+#define	MAX_ENEMIES 30
 
 class game : public screenInstance
 {
 public:
 	game(void);
 	void player(void);
+	void generateEnemy(void);
 	virtual int Run(sf::RenderWindow &App);
 
 private:
@@ -15,7 +16,8 @@ private:
 	sf::Texture bTexture;
 	sf::Sprite bimage;
 	int groundHeight;
-	
+	int totalEnemies;
+	Enemy *enemies[MAX_ENEMIES];
 };
 
 game::game(void)
@@ -45,13 +47,27 @@ void game::player(void) {
 	PlayerCharacter = kLlam;
 
 }
+//generate an enemeies randomly
+void game::generateEnemy(void)
+{
+	int numberOfenemies = rand() % 3;
+	totalEnemies += numberOfenemies;// adds the number generated to the total
 
+	for (int i = 0; i < numberOfenemies ; i++)
+	{
+		enemies[i] = new Enemy;
+		enemies[i]->setEnemy(Character({ 20,20 }, sf::Color::Green));
+
+	}
+
+}
 int game::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	player();
-	bool Running = true;	
+	bool Running = true;
 	PlayerCharacter.setPos({ 300,300 });
+	
 	
 	while (App.isOpen()) {
 
@@ -73,6 +89,7 @@ int game::Run(sf::RenderWindow &App)
 
 
 		while (App.pollEvent(Event)) {
+			//write player cords to the console
 			std::cout << "X: " << PlayerCharacter.retX() << " Y: " << PlayerCharacter.retY() << std::endl;
 			switch (Event.type)
 			{
@@ -105,10 +122,12 @@ int game::Run(sf::RenderWindow &App)
 			PlayerCharacter.moveMe({ 0 , PlayerCharacter.ggr() });
 		}
 
+		enemies.moveEnemy({ enemies.getMoveSpeed(), 0 });
 
 		App.clear();
 		App.draw(bimage);
 		PlayerCharacter.drawMe(App);
+		enemies.drawEnemy(App);
 		App.display();
 
 	}
