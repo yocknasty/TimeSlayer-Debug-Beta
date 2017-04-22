@@ -37,6 +37,7 @@ game::game(void)
 
 	//Constant for ground height
 	groundHeight = 198;
+	totalEnemies = 0;
 }
 
 void game::player(void) {
@@ -57,7 +58,7 @@ void game::generateEnemy(void)
 	{
 		enemies[i] = new Enemy;
 		enemies[i]->setEnemy(Character({ 20,20 }, sf::Color::Green));
-
+		enemies[i]->setPos({ 300.0 , 200.0 });
 	}
 
 }
@@ -65,6 +66,7 @@ int game::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	player();
+	generateEnemy();
 	bool Running = true;
 	PlayerCharacter.setPos({ 300,300 });
 	
@@ -122,12 +124,19 @@ int game::Run(sf::RenderWindow &App)
 			PlayerCharacter.moveMe({ 0 , PlayerCharacter.ggr() });
 		}
 
-		enemies.moveEnemy({ enemies.getMoveSpeed(), 0 });
-
 		App.clear();
 		App.draw(bimage);
+		for (int i = 0; i < totalEnemies; i++)
+		{
+			enemies[i]->moveEnemy({ enemies[i]->getMoveSpeed(), 0 });
+			enemies[i]->drawEnemy(App);
+		}
+		
+
+		
+		
 		PlayerCharacter.drawMe(App);
-		enemies.drawEnemy(App);
+		
 		App.display();
 
 	}
