@@ -26,7 +26,7 @@ game::game(void)
 	//sf::Vector2i screenDimensions(800, 250);
 	
 	//Initially loads the background
-	if (!bTexture.loadFromFile("Background.png")) {
+	if (!bTexture.loadFromFile("background2.png")) {
 		std::cout << "Background failed to load!" << std::endl;
 	}
 
@@ -34,14 +34,14 @@ game::game(void)
 	bimage.setTexture(bTexture);
 
 	//Constant for ground height
-	groundHeight = 198;
+	groundHeight = 340;
 }
 
 void game::player(void) {
 	//Generates the player
 	Player kLlam;
 	kLlam.setCharacter(Character({ 20, 60 }, sf::Color::Red));
-	kLlam.setPos({ 300,300 });
+	kLlam.setPos({ 300,400 });
 	PlayerCharacter = kLlam;
 
 }
@@ -50,16 +50,29 @@ int game::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	player();
-	bool Running = true;	
-	PlayerCharacter.setPos({ 300,300 });
-	
+	bool Running = true;
+	bool isFalling = false;
+	PlayerCharacter.setPos({ 300,340 });
+
+	int maxHeight = PlayerCharacter.getCharacter().maxJump();
 	while (App.isOpen()) {
+		
+		if (PlayerCharacter.isJump()) {
+			std::cout << "Curr Height: " << PlayerCharacter.retY() << " Max Height: " << maxHeight << std::endl;
+			if (PlayerCharacter.retY() > maxHeight){
+				PlayerCharacter.moveMe({ 0, -PlayerCharacter.gms()* 10 });
+			}
+			else{
+				PlayerCharacter.setJump(false);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			}
 
-			PlayerCharacter.moveMe({ 0, -PlayerCharacter.gms() });
-			PlayerCharacter.setJump(true);
+		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && PlayerCharacter.getCharacter().retY() > maxHeight) {
+			if (!(PlayerCharacter.isJump())){
+				PlayerCharacter.setJump(true);
+			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 			PlayerCharacter.moveMe({ PlayerCharacter.gms(),0 });
@@ -73,7 +86,8 @@ int game::Run(sf::RenderWindow &App)
 
 
 		while (App.pollEvent(Event)) {
-			std::cout << "X: " << PlayerCharacter.retX() << " Y: " << PlayerCharacter.retY() << std::endl;
+			//std::cout << "X: " << PlayerCharacter.retX() << " Y: " << PlayerCharacter.retY() << std::endl;
+			//std::cout << "RelMax: " << relativeMax << " Y: " << PlayerCharacter.retY() << std::endl;
 			switch (Event.type)
 			{
 			case sf::Event::Closed:
@@ -90,19 +104,24 @@ int game::Run(sf::RenderWindow &App)
 				}
 
 				//If Up is released, the isJumping boolean is set to false
-			case sf::Event::KeyReleased:
+			/*case sf::Event::KeyReleased:
 				if (Event.key.code == sf::Keyboard::Up)
 					PlayerCharacter.setJump(false);
-				break;
+				break;*/
 
 			}
 
 		}
 
-
+		if (PlayerCharacter.isJump()) {
+			PlayerCharacter.moveMe({ 0, -PlayerCharacter.gms() });
+			//std::cout << "Max Jump: " << relativeMax << " PlayerChar height: " << PlayerCharacter.retY() << std::endl;
+		}
+		
 		//Basically gravity pulling the block down if it's not jumping and is above the ground height
 		if ((PlayerCharacter.retY() < groundHeight) && (!PlayerCharacter.isJump())) {
 			PlayerCharacter.moveMe({ 0 , PlayerCharacter.ggr() });
+
 		}
 
 
