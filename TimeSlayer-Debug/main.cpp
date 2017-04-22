@@ -1,5 +1,4 @@
 /* 
-	YuNg EnGiNeEr
 	If you don't know what this is by now
 	this is going to be a long project.
 */
@@ -16,7 +15,7 @@ int main() {
 	std::vector<screenInstance*> Screens;
 	int screen = 0;
 
-	sf::RenderWindow App(sf::VideoMode(640, 480, 32), "SFML Demo 3");
+	sf::RenderWindow App(sf::VideoMode(640, 416, 32), "SFML Demo 3");
 
 	App.setMouseCursorVisible(false);
 

@@ -112,3 +112,7 @@ int Player::retX() {
 bool Player::isJump() {
 	return isJumping;
 }
+
+int Character::maxJump() {
+	return character.getPosition().y - 100;
+}

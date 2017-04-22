@@ -37,6 +37,8 @@ public:
 	int retY();
 	int retX();
 
+	int maxJump();
+
 private:
 	float moveSpeed;
 	float gravity;
