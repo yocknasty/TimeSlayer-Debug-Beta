@@ -55,5 +55,8 @@
     <ClInclude Include="game.h">
       <Filter>Screens\Game Wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="bullit.h">
+      <Filter>Character Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

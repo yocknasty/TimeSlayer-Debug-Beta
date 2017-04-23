@@ -37,6 +37,8 @@ public:
 	int retY();
 	int retX();
 
+	int maxJump();
+
 private:
 	float moveSpeed;
 	float gravity;
@@ -55,7 +57,7 @@ public:
 	void moveMe(sf::Vector2f dist);
 	void setPos(sf::Vector2f newPos);
 	void drawMe(sf::RenderWindow &window);
-
+	sf::Vector2f GetPos();
 	float gms();
 	float ggr();
 

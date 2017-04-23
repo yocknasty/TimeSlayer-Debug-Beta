@@ -137,6 +137,7 @@
     <Image Include="Background.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bullit.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="header.h" />
