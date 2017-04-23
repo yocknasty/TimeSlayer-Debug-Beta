@@ -37,7 +37,7 @@ public:
 	int retY();
 	int retX();
 
-private:
+protected:
 	float moveSpeed;
 	float gravity;
 
@@ -72,21 +72,5 @@ private:
 	Character player;
 	bool isJumping;
 };
-//holds the code for enemy characters
-class Enemy : public Character
-{
-public:
-	Enemy();
-	~Enemy();
 
-	void setEnemy(Character e);
-	void moveEnemy(sf::Vector2f dist);
-	void setPos(sf::Vector2f newPos);
-	void drawEnemy(sf::RenderWindow &window);
-private:
-	int ememy_Index; //tells which enemy is in the array
-	bool is_dead;
-	Character _evilguy;
-
-};
 

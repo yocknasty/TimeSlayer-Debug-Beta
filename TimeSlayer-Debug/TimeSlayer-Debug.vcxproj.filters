@@ -33,6 +33,9 @@
     <ClCompile Include="character.cpp">
       <Filter>Character Files</Filter>
     </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>Character Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Background.png">
@@ -54,6 +57,9 @@
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>Screens\Game Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="enemies.h">
+      <Filter>Character Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

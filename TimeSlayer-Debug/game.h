@@ -1,14 +1,16 @@
 #include "header.h"
 #include "menus.h"
+#include "enemies.h"
 #include "character.h"
 #define	MAX_ENEMIES 30
+using std::vector;
 
 class game : public screenInstance
 {
 public:
 	game(void);
 	void player(void);
-	void generateEnemy(void);
+	void generateEnemy(sf::RenderWindow &window);
 	virtual int Run(sf::RenderWindow &App);
 
 private:
@@ -17,6 +19,7 @@ private:
 	sf::Sprite bimage;
 	int groundHeight;
 	int totalEnemies;
+	//array with pointers to enemies on the heap
 	Enemy *enemies[MAX_ENEMIES];
 };
 
@@ -49,16 +52,19 @@ void game::player(void) {
 
 }
 //generate an enemeies randomly
-void game::generateEnemy(void)
+void game::generateEnemy(sf::RenderWindow &window)
 {
-	int numberOfenemies = rand() % 3;
+	int numberOfenemies = rand() % 3 +1;
 	totalEnemies += numberOfenemies;// adds the number generated to the total
-
+	//get the dementions for the window
+	float windowX = window.getSize().x;
+	float windowY = window.getSize().y;
 	for (int i = 0; i < numberOfenemies ; i++)
 	{
-		enemies[i] = new Enemy;
+		float random_offset = rand() % 200 + 200;//picks a random number to offset the enemise on screen
+		enemies[i] = new Enemy(i);
 		enemies[i]->setEnemy(Character({ 20,20 }, sf::Color::Green));
-		enemies[i]->setPos({ 300.0 , 200.0 });
+		enemies[i]->setPos({ windowX, windowY - random_offset });
 	}
 
 }
@@ -66,7 +72,7 @@ int game::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	player();
-	generateEnemy();
+	generateEnemy(App);
 	bool Running = true;
 	PlayerCharacter.setPos({ 300,300 });
 	
